@@ -1,7 +1,7 @@
 
 import { useNavigation } from '@react-navigation/native';
-import { useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+
+import { View, Text,  StyleSheet } from 'react-native';
 
 export function CategoryScreen({ route }) {
   const { category } = route.params;

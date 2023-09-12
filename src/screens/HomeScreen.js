@@ -3,7 +3,7 @@ import { View, FlatList, StyleSheet, TouchableOpacity, Text } from "react-native
 import { Button } from "../components/Button/button";
 import { ListItem } from "../components/ListItem/listItem";
 import { fetchNews } from "../Api/index";
-import { NavBar } from "../components/NavBar/NavBar";
+
 
 
 export function HomeScreen({ navigation }) {
@@ -41,9 +41,24 @@ export function HomeScreen({ navigation }) {
       />
       <Button text="Load More" onPress={() => {}} />
       <View>
-      <TouchableOpacity style={styles.categoryButtons} >
-          <Text style={styles.categoryText}>Sports</Text>
-      </TouchableOpacity>
+     <TouchableOpacity
+          style={styles.categoryButton}
+          onPress={() => navigateToCategory("Technology")}
+        >
+          <Text style={styles.categoryButtonText}>Technology</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.categoryButton}
+          onPress={() => navigateToCategory("Sports")}
+        >
+          <Text style={styles.categoryButtonText}>Sports</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.categoryButton}
+          onPress={() => navigateToCategory("Finance")}
+        >
+          <Text style={styles.categoryButtonText}>Finance</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -55,9 +70,19 @@ const styles = StyleSheet.create({
   categoryButtons: {
     backgroundColor: 'red',
     flexDirection: "row",
+    justifyContent: "center",
+    alignItems: 'center',
     gap: 15,
-    alignItems: 'center'
-    
+    marginTop: 10,
   },
-  
+  categoryButton: {
+    backgroundColor: "lightblue",
+    borderRadius: 8,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+  },
+  categoryButtonText: {
+    fontSize: 16,
+    fontWeight: "bold",
+  },
 });
