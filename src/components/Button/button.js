@@ -1,5 +1,5 @@
 
-import { Text, TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { styles } from './styles.button';
 
@@ -11,7 +11,9 @@ export function Button({ text, onPress }) {
         end={{ x: 0.1, y: 0.2 }}
         style={styles.buttonGradient}
       >
+        <View>
         <Text style={styles.buttonText}>{text}</Text>
+        </View>
       </LinearGradient>
     </TouchableOpacity>
   );

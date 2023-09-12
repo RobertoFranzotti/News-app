@@ -6,12 +6,17 @@ import {
   TouchableOpacity,
   Linking,
 } from "react-native";
-import React from "react";
+import {React, useState} from "react";
+import { FontAwesome } from "@expo/vector-icons";
 
 export function ArticleScreen({ route }) {
   const { article } = route.params;
+  const [isFavorite, setIsFavorite] = useState(false);
+  
   console.log(JSON.stringify(article, null, 2));
-  //export function card ({repository, isFavorited }: xard)
+  const toggleFavorite = () => {
+    setIsFavorite(!isFavorite);
+  };
 
   const openLink = () => {
     if (article?.url) {
@@ -37,6 +42,19 @@ export function ArticleScreen({ route }) {
           <Text style={styles.linkText}>Leia a notícia completa</Text>
         </TouchableOpacity>
       </View>
+      <TouchableOpacity
+        style={[
+          styles.favoriteButton,
+          isFavorite ? styles.favoriteButtonActive : {},
+        ]}
+        onPress={toggleFavorite}
+      >
+        <FontAwesome
+          name={isFavorite ? "heart" : "heart-o"}
+          size={24}
+          color={isFavorite ? "red" : "blue"}
+        />
+      </TouchableOpacity>
     </View>
   );
 }
@@ -93,5 +111,19 @@ const styles = StyleSheet.create({
   linkText: {
     color: "#fff",
     fontSize: 16,
+  },
+  favoriteButton: {
+    width: 50,
+    height: 50,
+    borderRadius: 50,
+    backgroundColor: '#fff',
+    alignItems: "center",
+    justifyContent: "center",
+    position: "absolute",
+    top: 10,
+    right: 10,
+  },
+  favoriteButtonActive: {
+    backgroundColor: '#fff',
   },
 });
