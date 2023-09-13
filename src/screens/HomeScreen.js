@@ -32,6 +32,32 @@ export function HomeScreen({ navigation }) {
    
   return (
     <View>
+      <View style={styles.categoryButtons}>
+        <TouchableOpacity
+          style={styles.categoryButton}
+          onPress={() => navigateToCategory("Technology")}
+        >
+          <Text style={styles.categoryButtonText}>TECHONOLOGY</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.categoryButton}
+          onPress={() => navigateToCategory("Sports")}
+        >
+          <Text style={styles.categoryButtonText}>SPORTS</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.categoryButton}
+          onPress={() => navigateToCategory("Finance")}
+        >
+          <Text style={styles.categoryButtonText}>FINANCE</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.categoryButton}
+          onPress={() => navigateToCategory("Favorite")}
+        >
+          <Text style={styles.categoryButtonText}>FAVORITE</Text>
+        </TouchableOpacity>
+      </View>
       <FlatList
         data={articles}
         keyExtractor={(item) => item.url}
@@ -40,26 +66,6 @@ export function HomeScreen({ navigation }) {
         )}
       />
       <Button text="Load More" onPress={() => {}} />
-      <View>
-     <TouchableOpacity
-          style={styles.categoryButton}
-          onPress={() => navigateToCategory("Technology")}
-        >
-          <Text style={styles.categoryButtonText}>Technology</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.categoryButton}
-          onPress={() => navigateToCategory("Sports")}
-        >
-          <Text style={styles.categoryButtonText}>Sports</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.categoryButton}
-          onPress={() => navigateToCategory("Finance")}
-        >
-          <Text style={styles.categoryButtonText}>Finance</Text>
-        </TouchableOpacity>
-      </View>
     </View>
   );
 }
@@ -67,13 +73,12 @@ const styles = StyleSheet.create({
   loadMoreButton: {
     marginVertical: 10,
   },
-  categoryButtons: {
-    backgroundColor: 'red',
+  categoryButtons: {   
     flexDirection: "row",
     justifyContent: "center",
     alignItems: 'center',
-    gap: 15,
-    marginTop: 10,
+    gap: -20,
+    marginTop: 0,
   },
   categoryButton: {
     backgroundColor: "lightblue",
@@ -82,6 +87,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   categoryButtonText: {
+    fontWeight: 'bold',
     fontSize: 16,
     fontWeight: "bold",
   },
