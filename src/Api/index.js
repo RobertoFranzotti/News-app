@@ -12,3 +12,14 @@ export async function fetchNews() {
     return [];
   }
 }
+
+export async function getNewsByCategory(category) {
+  try {
+    const response = await fetch(`${apiUrl}/sources?category=${category}&apiKey=${apiKey}`);
+    const data = await response.json();
+    return data;
+
+  } catch (error) {
+
+  }
+}

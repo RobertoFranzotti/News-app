@@ -1,17 +1,36 @@
 
 import { useNavigation } from '@react-navigation/native';
+import { useEffect, useState } from 'react';
 
-import { View, Text,  StyleSheet } from 'react-native';
+import { View, Text,  StyleSheet, FlatList } from 'react-native';
+import { getNewsByCategory } from '../Api';
+import { ListItem } from '../components/ListItem/listItem';
 
-export function CategoryScreen({ route }) {
+export function CategoryScreen({ navigation, route }) {
+  const [news, setNews] = useState([])
   const { category } = route.params;
-  const navigation = useNavigation();
 
-  
-  
+  const handleArticlePress = (article) => {
+    navigation.navigate("Article", { article });
+  };
+
+  useEffect(() => {
+    getNewsByCategory(category).then(response => {
+      console.log(response.sources[0]);
+
+      setNews(response.sources)
+    });
+  }, [category])
+
   return (
     <View style={styles.container}>
-      <Text>Category: {category}</Text>
+      <FlatList
+        data={news}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <ListItem article={item} onPress={handleArticlePress} />
+        )}
+      />
      </View>
   );
 }
@@ -19,8 +38,6 @@ export function CategoryScreen({ route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   button: {
     marginTop: 16,

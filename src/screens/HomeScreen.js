@@ -89,6 +89,6 @@ const styles = StyleSheet.create({
   categoryButtonText: {
     fontWeight: 'bold',
     fontSize: 16,
-    fontWeight: "bold",
+    
   },
 });
